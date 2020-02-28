@@ -1,0 +1,917 @@
+﻿"""EXERCICIOS PROGRAMAÇÃO C++ PARTE 1"""
+
+1.1 
+
+int main()
+{
+	char x;
+	cout << "Enter a character to see its ASCII code: ";
+	cin >> x;
+	cout << "The value of " << x << " in ASCII is: " << int(x);
+	return 0;
+}
+
+1.2
+
+int main()
+{
+	float a, b, c, media;
+	cout << "A: ";
+	cin >> a;
+	cout << "B: ";
+	cin >> b;
+	cout << "C: ";
+	cin >> c;
+	media = (a + b + c) / 3;
+	cout << "media = " << media << endl << "A-media = " << a - media << endl << "B-media = " << b - media << endl << "C-media = " << c - media << endl;
+}
+
+1.3 
+
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+int main()
+{
+	float ro, raio, massa;
+	cout << "Introduza o valor da densidade(Kg/m3): ";
+	cin >> ro;
+	cout << "Introduza o valor do raio(m): ";
+	cin >> raio;
+	cout << "A massa da esfera é: " << 4 / 3 *M_PI * ro * pow(raio, 3);
+}
+
+1.4 e 2.1
+
+int main()
+{
+	float a, b, c, d, e, f;
+	cout << "Para um sistema de equações do tipo ax +by = c , dx + ey = f introduza os valores de a,b,c,d,e,f para obter a solução." << endl;
+	cin >> a >> b >> c >> d >> e >> f;
+	if (a*e == b * d) {
+		cout << "O sistema é impossivel.";
+		return 0;
+	}
+	else if (a / d == b / e == c / f) {
+		cout << "O sistema é possivel indeterminado.";
+		return 0;
+	}
+	else {
+		cout << "x = " << (c*e - b * f) / (a*e - b * d) << endl;
+		cout << "y = " << (a*f - c * d) / (a*e - b * d);
+		return 0;
+	}
+}
+
+1.5
+
+int main()
+{
+	int d=0, h, m, s, h1, m1, s1;
+	cout << "Tempo 1 (horas minutos segundos) ? ";
+	cin >> h >> m >> s;
+	cout << "Tempo 2 (horas minutos segundos) ? ";
+	cin >> h1 >> m1 >> s1;
+	h += h1;
+	m += m1;
+	s += s1;
+	if (s >= 60) {
+		m += 1;
+		s -= 60;
+	}
+	if (m >= 60) {
+		h += 1;
+		m -= 60;
+	}
+	if (h >= 24) {
+		h -= 24;
+		d += 1;
+	}
+	cout << "Soma dos tempos: " << d << " dia, " << h << " horas, " << m << " minutos, " << s << " segundos";
+}
+
+1.6
+
+#include <math.h>
+
+int main()
+{
+	float a1, a2, b1, b2, c1, c2, a, b, c, s;
+	cout << "Introduza as cooderdenadas dos 3 pontos i.e. 2 1 3 2 4 2 --> (2,1) (3,2) (4,2): ";
+	cin >> a1 >> a2 >> b1 >> b2 >> c1 >> c2;
+	a = sqrt(pow(a1 - b1, 2) + pow(a2 - b2, 2));
+	b = sqrt(pow(a1 - c1, 2) + pow(a2 - c2, 2));
+	c = sqrt(pow(b1 - c1, 2) + pow(b2 - c2, 2));
+	s = (a + b + c) / 2;
+	cout << "Area do triangulo: " << sqrt(s*(s - a)*(s - b)*(s - c));
+}
+
+2.2
+
+#include <algorithm>
+
+int main()
+{
+	float arr[3];
+	int n = sizeof(arr) / sizeof(arr[0]);
+	for (int i = 0; i<3; ++i)
+	{
+		cout << "Introduza um numero: ";
+		cin >> arr[i];
+	}
+
+	sort(arr, arr+n, greater<float>());
+
+	cout << "O menor dos numeros introduzidos: " << arr[n - 1] << endl << "O maior dos numeros introduzidos: " << arr[0] << endl;
+	cout << "Por ordem crescente sao: ";
+	for (int i = 0; i < 3; i++) {
+		cout << arr[i] << ". ";
+	}
+	if (arr[1] + arr[2] > arr[0]) {
+		cout << " Estas medidas podem formar um triangulo";
+	}
+	else {
+		cout << " Estas medidas nao podem formar um triangulo";
+	}
+
+	return 0;
+}
+
+2.3
+
+int main()
+{
+	double op1, op2;
+	char op;
+	cout << "Escreva uma conta para resolver: ";
+	cin >> op1 >> op >> op2;
+	switch (op) 
+	{
+	case '+':
+		cout << op1 + op2;
+		break;
+	case '-':
+		cout << op1 - op2;
+		break;
+	case '/':
+		cout << op1 / op2;
+		break;
+	case '*':
+		cout << op1 * op2;
+		break;
+	default:
+		cout << "A operation is invalida.";
+	}
+}
+
+2.4
+
+int main()
+{
+	float peso;
+	cout << "Indique o peso da mercadoria: ";
+	cin >> peso;
+	if (peso <= 500) {
+		cout << "O custo sera 5 paus.";
+	}
+	else if (peso <= 1000) {
+		cout << "O custo sera " << 5 + (peso - 500) / 100 * 1.5 << " paus.";
+	}
+	else {
+		cout << "O custo sera " << 12.5 + int((peso - 1000) / 250) * 5 << " paus.";
+	}
+}
+
+2.5
+
+int main()
+{
+	float a, b, c, bin;
+	cout << "Introduza os coeficientes (a b c): ";
+	cin >> a >> b >> c;
+	bin = pow(b, 2) - 4 * a * c;
+	if (bin > 0) {
+		cout << "A equacao tem 2 raizes: " << (-b + sqrt(bin)) / (2 * a) << " e " << (-b - sqrt(bin)) / (2 * a);
+	}
+	else if (bin == 0) {
+		cout << "A equacao tem 1 raiz: " << -b / (2 * a);
+	}
+	else {
+		cout << "A equacao tem 2 raizes imaginarias: " << -b / (2 * a) << "+" << sqrt(-bin) / (2 * a) << "i e " << -b / (2 * a) << "-" << sqrt(-bin) / (2 * a) << "i";
+	}
+}
+
+2.6
+
+int main()
+{
+	int n;
+	cout << "Digite um numero: ";
+	cin >> n;
+	for (int i = 2; i < n; i++) {
+		if (n%i == 0) {
+			cout << "The number isn't prime.";
+			return 0;
+		}
+	}
+	cout << "The number is prime.";
+	return 0;
+}
+
+2.7
+
+#include <iomanip>
+#define _USE_MATH_DEFINES
+#include <math.h>
+using namespace std;
+
+int main()
+{
+	float sp, ep, inc;
+	cout << "Introduza a gama da tabela (a b)-->[a,b] : ";
+	cin >> sp >> ep;
+	cout << "Introduza o incremento desejado: ";
+	cin >> inc;
+	cout << setw(5) << "ang" << setw(10) << "sen" << setw(10) << "cos" << setw(10) << "tan" << endl;
+	for (float i = sp; i <= ep; i += inc) {
+		cout << setw(5) << i << setw(10) << sin(i * M_PI / 180) << setw(10) << cos(i * M_PI / 180) << setw(10) << tan(i * M_PI / 180) << endl;
+	}
+}
+
+2.8
+
+int main()
+{
+	float n, q, j;
+	cout << "Introduza a quantia a aplicar, a duração(anual) e os juros separados por 1 unico espaço: ";
+	cin >> q >> n >> j;
+	cout << "O montante final será: " << q * pow((1 + j / 100), n);
+}
+
+2.9
+
+a) int main()
+{
+	float n, m, M, total = 0, soma = 0;
+	cout << "Introduza um numero (0 para terminar): ";
+	cin >> n;
+	M = m = n;
+	while (n != 0) {
+		if (n < m) {
+			m = n;
+		}
+		else if (n > M) {
+			M = n;
+		}
+		total += 1;
+		soma += n;
+		cout << "Introduza um numero (0 para terminar): ";
+		cin >> n;
+	}
+	cout << "O menor: " << m << "; O maior: " << M << "; A soma: " << soma << "; A media: " << soma / total;
+	return 0;
+}
+
+b) int main()
+{
+	float n, m, M, total = 1, soma = 0;
+	int tamanho;
+	cout << "Qual o tamanho da sequencia? ";
+	cin >> tamanho;
+	cout << "Introduza um numero: ";
+	cin >> n;
+	soma += n;
+	M = m = n;
+	for (int i = 0; i < tamanho - 1; i++) {
+		cout << "Introduza um numero: ";
+		cin >> n;
+		if (n < m) {
+			m = n;
+		}
+		else if (n > M) {
+			M = n;
+		}
+		total += 1;
+		soma += n;
+	}
+	cout << "O menor: " << m << "; O maior: " << M << "; A soma: " << soma << "; A media: " << soma / total;
+	return 0;
+}
+
+c) int main()
+{
+	float n, m, M;
+	int total = 0, soma = 0;
+	bool terminate = false, invalidinp;
+	do {
+		do {
+			invalidinp = false;
+			cout << "Introduza um numero (CTRL-Z termina): ";
+			cin >> n;
+			if (cin.fail()) {
+				if (cin.eof()) {
+					terminate = true;
+				}
+				else {
+					cin.clear();
+					cin.ignore(1000, '\n');
+					invalidinp = true;
+					cout << "Input invalido" << endl;
+				}
+			}
+		} while (!terminate && invalidinp);
+		if (!terminate) {
+			soma += n;
+			total += 1;
+			if (total == 1) {
+				m = M = n;
+			}
+			else {
+				if (n < m) {
+					m = n;
+				}
+				else if (n > M) {
+					M = n;
+				}
+			}
+		}
+	} while (!terminate);
+	cout << "O menor: " << m << "; O maior: " << M << "; A soma: " << soma <<"; A media: " << soma / total;
+	return 0;
+}
+
+2.10
+
+int main()
+{
+	int n, n2, inverso = 0, divint;
+	bool invalidinp;
+	do {
+		invalidinp = false;
+		cout << "Introduza um inteiro: ";
+		cin >> n;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Input invalido" << endl;
+			invalidinp = true;
+		}
+	} while (invalidinp);
+	n2 = n;
+	while (n2 != 0) {
+		inverso = inverso*10 + n2%10;
+		n2 = n2 / 10;
+	}
+	if (n == inverso) {
+		cout << "O numero e capicua";
+	}
+	else {
+		cout << "O nr nao e capicua";
+	}
+	return 0;
+}
+
+2.13
+
+#include <string>
+
+int main()
+{
+	int n, n2;
+	string fds = "";
+	cout << "Introduza um inteiro: ";
+	cin >> n;
+	n2 = n;
+	while (n2 != 1) {
+		for (int i = 2; i <= n2; i++) {
+			if (n2%i == 0) {
+				n2 = n2 / i;
+				fds += to_string(i) + "x";
+				break;
+			}
+		}
+	}
+	cout << fds.substr(0, fds.size() - 1);
+	return 0;
+}
+
+2.14
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	int nit, precision = 0, count=0;
+	double delta, n, frac, intpart, dif, rq=1, rqn;
+	cout << "Introduza um numero maximo de iteracoes e um delta (i.e. 3 0.001 itera 3 vezes ou ate dif de 0.001): ";
+	cin >> nit >> delta;
+	cout << "E o numero para descobrir a raiz? ";
+	cin >> n;
+	frac = modf(delta, &intpart);
+	while (frac != 0) {
+		frac = frac * 10;
+		precision = precision + 1;
+		frac = frac - int(frac);
+	}
+	cout << setw(precision + 12) << "rq" << setw(precision + 12) << "rqn" << setw(precision + 12) << "rqn^2" << setw(precision + 12) << "dif=n-rqn^2" << endl;
+	cout << fixed << setprecision(precision);
+	do{
+		count += 1;
+		rqn = (rq + n / rq) / 2;
+		dif = n - pow(rqn, 2);
+		cout << setw(precision + 12) << rq << setw(precision + 12) << rqn << setw(precision + 12) << pow(rqn, 2) << setw(precision + 12) << dif << endl;
+		rq = rqn;
+	} while (abs(dif) > delta && count < nit);
+	cout << "Pela sqrt: " << sqrt(n);
+	return 0;
+}
+
+
+2.15 
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <time.h>
+using namespace std;
+
+int main()
+{
+	srand(time(NULL));
+	int n1, n2, r;
+	n1 = rand() % 6 + 2;
+	n2 = rand() % 6 + 2;
+	cout << "Qual o resultado de " << n1 << "x" << n2 << " ?" << endl;
+	clock_t t1 = clock();
+	cin >> r;
+	clock_t t2 = (float)(clock() - t1) / (CLOCKS_PER_SEC);
+	if (r != n1 * n2) {
+		cout << "Muito Mau, a resposta certa: " << n1 * n2 << endl;
+	}
+	else if(t2 < 5) {
+		cout << "Bom" << endl;
+	}
+	else if (t2 >= 5 && t2 < 10) {
+		cout << "Satifaz" << endl;
+	}
+	else {
+		cout << "Insuficiente" << endl;
+	}
+	return 0;
+}
+
+3.1
+
+#include "pch.h"
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double distance(double x1, double y1, double x2, double y2) {
+	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+}
+
+double area(double x1, double y1, double x2, double y2, double x3, double y3) {
+	double a, b, c, s;
+	a = distance(x1, y1, x2, y2);
+	b = distance(x2, y2, x3, y3);
+	c = distance(x1, y1, x3, y3);
+	s = (a + b + c) / 2;
+	return sqrt(s*(s - a)*(s - b)*(s - c));
+}
+int main()
+{
+	double x1, x2, x3, y1, y2, y3;
+	cout << "Introduza as coordenadas de um vertice separadas por 1 unico espaço: ";
+	cin >> x1 >> y1;
+	cout << "Introduza as coordenadas d'outro vertice separadas por 1 unico espaço: ";
+	cin >> x2 >> y2;
+	cout << "Introduza as coordenadas do ultimo vertice separadas por 1 unico espaço: ";
+	cin >> x3 >> y3;
+	cout << area(x1, y1, x2, y2, x3, y3);
+	return 0;
+}
+
+3.2
+
+bool isPrime(int x){
+	for (int i = 2; i < x; i++) {
+		if (x%i == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+int main()
+{
+	bool a;
+	int x;
+	cout << "Introduza um numero: ";
+	cin >> x;
+	a = isPrime(x);
+	if (a == true) {
+		cout << "The number is prime.";
+	}
+	else {
+		cout << "The number isn't prime.";
+	}
+	return 0;
+}
+
+3.3
+
+#include "pch.h"
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+double squaring(double num, double precision, int nit) {
+	int count=0;
+	double rq = 1, rqn, dif;
+	do {
+		count += 1;
+		rqn = (rq + num / rq) / 2;
+		dif = num - pow(rqn, 2);
+		rq = rqn;
+	} while (abs(dif) > precision && count < nit);
+	return rqn;
+}
+
+int main()
+{
+	int nit;
+	double delta, sqmyway, n;
+	cout << "Introduza um numero maximo de iteracoes e um delta (i.e. 3 0.001 itera 3 vezes ou ate dif de 0.001): ";
+	cin >> nit >> delta;
+	cout << "E o numero para descobrir a raiz? ";
+	cin >> n;
+	sqmyway = squaring(n, delta, nit);
+	cout << "Pelo metodo marado com as suas especificaçoes da: " << sqmyway << endl << "Pela funçao sqrt de cmath da: " << sqrt(n) << endl;
+	cout << "Ou seja, tem um erro de " << 100 - 100*sqmyway / sqrt(n) << "%";
+	return 0;
+}
+
+3.4
+
+#include "pch.h"
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+double round(double x, unsigned n)
+{
+	return floor(x * pow(10,n) + 0.5) / pow(10, n);
+}
+
+int main()
+{
+	double num;
+	unsigned n;
+	cout << "Itroduza um nr e o nr de casas decimas a arredondar: ";
+	cin >> num >> n;
+	cout << round(num, n);
+	return 0;
+}
+
+3.5
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+bool readFracc(int &numerator, int &denominator) {
+	char operador;
+	if (cin >> numerator >> operador >> denominator && operador=='/') {
+		return true;
+	}
+	else {
+		numerator = denominator = 0;
+		return false;
+	}
+}
+
+void writeFracc(int numerator, int denominator)
+{
+	cout << numerator << "/" << denominator;
+}
+
+int mdc(int menor, int maior) {
+	for (int i = menor; i >=2; i--){
+		if (menor%i == 0 && maior%i == 0){
+			return i;
+		}
+	}
+	return 1;
+}
+
+void reduceFracc(int &numerator, int &denominator) {
+	int divisor;
+	if (numerator <= denominator) {
+		divisor = mdc(numerator, denominator);
+	}
+	else {
+		divisor = mdc(denominator, numerator);
+	}
+	numerator = numerator / divisor;
+	denominator = denominator / divisor;
+	
+}
+
+int main()
+{
+	int num, den;
+	cout << "Introduza uma frac (i.e. 1/3): ";
+	if (readFracc(num, den)) {
+		reduceFracc(num, den);
+		writeFracc(num, den);
+	}
+	else {
+		cout << "Invalid input";
+	}
+	return 0;
+}
+//falta adicionar as operaçoes o que é facil mas da trabalho, so pedir outro input e ta algoritmo para cada operaçao depois reduzir.
+
+3.6
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool bissexto(int n) {
+	if (n % 4 == 0 && n % 100 != 0) {
+		return true;
+	}
+	return false;
+}
+
+int nrdias(int mes, int ano) {
+	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+		return 31;
+	}
+	else if (mes == 2) {
+		if (bissexto(ano)) {
+			return 28;
+		}
+		return 27;
+	}
+	else {
+		return 30;
+	}
+}
+
+int get_c(int mes, int ano) {
+	switch (mes) {
+	case 1:
+		if (bissexto(ano)) {
+			return 6;
+		}
+		else {
+			return 0;
+		}
+	case 2:
+		if (bissexto(ano)) {
+			return 2;
+		}
+		else {
+			return 3;
+		}
+	case 3:case 11:
+		return 3;
+	case 4:case 7:
+		return 6;
+	case 5:
+		return 1;
+	case 6:
+		return 4;
+	case 8:
+		return 2;
+	case 9:case 12:
+		return 5;
+	case 10:
+		return 0;
+	default:
+		return 0;
+	}
+}
+unsigned int dia(int dia, int mes, int ano) {
+	int c = get_c(mes, ano);
+	return ((5 * (ano % 100) / 4) + c + dia - 2 * ((ano / 100) % 4) + 7)%7;
+}
+
+void print_ano(unsigned int mes, int ano) {
+	const char* meses[12] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	cout <<meses[mes - 1] << "/" << ano << "\n";
+	cout << "Mon\tTue\tWed\tThu\tFri\tSat\tSun\n";
+	unsigned int monthDays = nrdias(mes, ano);
+	unsigned int currentWeekDay;
+	for (unsigned int day = 1; day <= monthDays; day++) {
+		currentWeekDay = dia(day, mes, ano);
+		if (day == 1)
+			cout << string(currentWeekDay, '\t') << day << ((currentWeekDay == 6) ? "\n" : "\t");
+		else
+			cout << day << ((currentWeekDay == 6) ? "\n" : "\t");
+	}
+	cout << "\n";
+}
+
+
+int main() {
+	int ano;
+	cout << "De que ano quer o calendario? ";
+	cin >> ano;
+	for (unsigned int month = 1; month <= 12; month++) {
+		print_ano(month, ano);
+	}
+}
+
+3.7
+
+long factorial_ite(int n) {
+	long res = 1;
+	for ( n; n >= 2; n--) {
+		res = res * n;
+	}
+	return res;
+}
+long factorial_rec(int n) {
+	if (n <= 1) {
+		return 1;
+	}
+	else {
+		return n * factorial_rec(n - 1);
+	}
+}
+int main()
+{
+	int n;
+	cout << "Um numero? ";
+	cin >> n;
+	cout << "O fact ite: " << factorial_ite(n) << endl << "O fact rec: " << factorial_rec(n);
+}
+
+3.8
+
+int gcd(int n1, int n2) {
+	if (n1%n2 == 0) {
+		return n2;
+	}
+	else {
+		return gcd(n2, n1%n2);
+	}
+}
+int main()
+{
+	int n1, n2;
+	cout << "2 nr to find gcd: ";
+	cin >> n1 >> n2;
+	cout << "gdc = " << gcd(n1, n2);
+}
+
+3.9
+
+#include <cmath>
+using namespace std;
+
+double g(double n) {
+	return n * n;
+}
+
+double f(double n) {
+	return sqrt(4 - n * n);
+}
+
+double integrateTR(double x(double), double a, double b, int n) {
+	double h = (b - a) / n, result = 0;
+	for (int i = 1; i <= n; i++) {
+		result += h / 2 * (x(a + (i - 1)*h) + x(a + i * h));
+	}
+	return result;
+}
+
+int main()
+{
+	cout << "Para a func x^2 com a=0, b=10" << endl;
+	for (int i = 2; i <= 128; i = i* 2) {
+		cout << "para n=" << i << " " << integrateTR(g, 0, 10, i)<<endl;
+	}
+	cout << "Para a func sqrt(4 - n * n) com a=-2, b=2" << endl;
+	for (int i = 2; i <= 128; i = i * 2) {
+		cout << "para n=" << i << " " << integrateTR(f, -2, 2, i)<<endl;
+	}
+}
+
+4.1
+
+bool isHydroxide(char compound[]) {
+	return strstr(compound, "OH");
+}
+bool isHydroxide(string fds) {
+	return fds.find("OH") != string::npos;
+}
+int main()
+{
+	string i = "NaOH";
+	cout << boolalpha << isHydroxide(i);
+}
+
+4.2
+
+bool sequenceSearch(string s, int nc, char c) {
+	string sub;
+	for (unsigned int i = 1; i <= nc; i++) {
+		sub += c;
+	}
+	return s.find(sub) != string::npos;
+}
+
+4.3
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <cstddef>
+#include <vector>
+#include <locale>
+using namespace std;
+
+void decompose(string compound) {
+	string str;
+	cout << "Os elementos de " << compound << " sao: ";
+	str = compound[0];
+	for (unsigned int i = 1; i < compound.size(); i++) {
+		if (isupper(compound[i])) {
+			cout << str << " ";
+			str.clear();
+			str = compound[i];
+		}
+		else {
+			if (isdigit(compound[i])) {
+				continue;
+			}
+			else {
+				str += compound[i];
+			}
+		}
+	}
+	cout << str << endl;
+}
+
+int main()
+{
+	vector<string> ele = { "H2O", "KOH", "H2O2", "NaCl", "NaOH", "C9H8O4", "MgOH" };
+	for (unsigned int i = 0; i <= ele.size() - 1; i++) {
+		decompose(ele[i]);
+	}
+	return 0;
+}
+
+4.4
+
+string normalizeName(string name) {
+	const string comp[] = { " de ", " do ", " da ", " das ", " dos ", " e " };
+	string out = "";
+	size_t aux;
+	while (name.back() == ' ') {
+		name.pop_back();
+	}
+	while (name[0] == ' ') {
+		name.erase(0, 1);
+	}
+	for (unsigned int i = 0; i <= sizeof(comp)/sizeof(comp[0])-1; i++) {
+		aux = name.find(comp[i]);
+		if (aux != string::npos) {
+			name.erase(aux+1, comp[i].size()-1);
+		}
+	}
+	for (unsigned int i = 0; i <= name.size(); i++) {
+		if (isalpha(name[i])) {
+			out += toupper(name[i]);
+		}
+		else {
+			if (out.back() != ' '&& i!=name.size()) {
+				out.push_back(' ');
+			}
+		}
+	}
+	return out;
+}
+int main()
+{
+	string oi = " Joao   Pereira e da Silva  Fodasse Sim  ";
+	cout << normalizeName(oi) << "!";
+	return 0;
+}
+
+4.5
+
+
+

@@ -1,0 +1,19 @@
+To do list:
+
+implement .open() error handling
+add options on read func (total packs bought, all packs bought by specific client, specific client, all clients, packs by: all, destiny, between dates and both last together)
+funcs to manage clients and packs
+func to make a client buy a pack
+
+
+
+
+Use the print funcs to confirm the info about the new pack/client.
+Verificar as 2 de add
+Na funçao de adicionar client e pack usar a de alterar no caso de querer corrigir alguma coisa.
+
+For the readme.txt
+The first line of the packs.txt indicates the id of the last added EXISTING pack. So if you a pack then remove it the first line will have the "second" to last added pack and so on.
+exlpain the why to not using a struct for date and adress
+the change pack info will only change the dates, maxpeeps, prices, and destiny.
+the vectors aren't ordered which will impact performance for a big enough database

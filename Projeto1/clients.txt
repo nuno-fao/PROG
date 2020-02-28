@@ -1,0 +1,22 @@
+Suspeito
+234987156
+4
+Rua Sem Fim / 200 / 5Esq / 1200-001 / Merda
+10 ; 36 ; 2 ; 1
+::::::::::
+Belmiro Miguel
+111987666
+2
+Avenida dos Grilos / 100 / - / 2300-101 / Coimbra
+100 ; 136 ; 20
+::::::::::
+Belmiro Pe de Rolha
+111987366
+2
+Avenida dos Grilos / 100 / - / 2300-101 / Coimbra
+100 ; 3 ; 98
+::::::::::
+Rui
+145785245
+4
+Chupa aqui pls / 89 / 5bac / 8554-789 / 
